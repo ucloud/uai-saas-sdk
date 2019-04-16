@@ -32,9 +32,9 @@ def find_version(*file_paths):
 
 
 setup(
-    name='uai-censor-sdk',
+    name='uai-ocr-sdk',
     version=find_version("__init__.py"),
-    description='UAI Censor SDK',
+    description='UAI OCR SDK',
     maintainer_email='charlie.song@ucloud.cn',
     platforms='any',
     packages=packages,

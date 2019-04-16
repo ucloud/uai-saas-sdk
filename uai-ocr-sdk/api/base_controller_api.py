@@ -7,13 +7,9 @@ from api.logger import uai_logger
 
 class UAIOcrBaseControllerApi(object):
 
-    # UCLOUD_API_URL = 'http://api.ucloud.cn'
-    # PARAMS_DEFAULT_REGION = "cn-bj2"
-    # PARAMS_DEFAULT_ZONE = "cn-bj2-04"
-
-    UCLOUD_API_URL = 'http://192.168.154.129:20001'
-    PARAMS_DEFAULT_REGION = "pre"
-    PARAMS_DEFAULT_ZONE = "pre"
+    UCLOUD_API_URL = 'http://api.ucloud.cn'
+    PARAMS_DEFAULT_REGION = "cn-bj2"
+    PARAMS_DEFAULT_ZONE = "cn-bj2-04"
 
     PARAM_ACTION = 'Action'
     PARAM_PUBLIC_KEY = 'PublicKey'

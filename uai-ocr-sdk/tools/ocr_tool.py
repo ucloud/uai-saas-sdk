@@ -1,6 +1,7 @@
 import argparse
 from operation.gen_job_signature_op import UAIOcrGenJobSignatureOp
 from operation.create_ocr_idcard_job_op import CreateUAIOcrIdcardJobOp
+from operation.create_ocr_bill_job_op import CreateUAIOcrBillJobOp
 
 from operation.create_ocr_resource_op import CreateOcrResourceOp
 from operation.delete_ocr_resource_op import DeleteOcrResourceOp
@@ -27,6 +28,7 @@ def parse_args(subparser):
     ocr_parser = subparser.add_parser('ocr', help='ocr concerned tools')
     ocr_tool_parser = ocr_parser.add_subparsers(dest='ocr type', help='ocr type name')
     ocr_idcard_parser = ocr_tool_parser.add_parser('idcard', help='create idcard ocr job')
+    ocr_bill_parser = ocr_tool_parser.add_parser('bill', help='create bill ocr job')
 
     signature_parser = subparser.add_parser('signature', help='signature concerned tools')
     signature_tool_parser = signature_parser.add_subparsers(dest='action_name', help='action name')
@@ -44,9 +46,11 @@ def parse_args(subparser):
     list_resource_type_op = GetUAIOcrAvailOcrResourceTypeOp(list_resource_type_parser)
 
     ocr_idcard_job_op = CreateUAIOcrIdcardJobOp(ocr_idcard_parser)
+    ocr_bill_job_op = CreateUAIOcrBillJobOp(ocr_bill_parser)
 
     ocr_op_dic = {
-        "idcard": ocr_idcard_job_op
+        "idcard": ocr_idcard_job_op,
+        "bill": ocr_bill_job_op,
     }
 
     signature_op_dic = {

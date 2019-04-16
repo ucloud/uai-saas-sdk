@@ -17,7 +17,7 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         config_file = sys.argv[1]
     else:
-        config_file = '../config_files/controller-config-pre.json'
+        config_file = '../config_files/controller-config-online.json'
 
     public_key, private_key = load_config(config_file)
     caller = GetUAIOcrAvailResourceTypeApi(public_key, private_key)

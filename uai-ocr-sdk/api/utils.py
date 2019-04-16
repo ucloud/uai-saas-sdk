@@ -6,6 +6,7 @@ import hashlib
 DataStreamUrlPrefix = "http://api.uai.ucloud.cn"
 OcrVersion = "v1"
 IdcardOcr = "ocr/idcard"
+BillOcr = "ocr/bill"
 
 def get_response(rsp, num):
     response = ""
@@ -36,8 +37,13 @@ def get_response(rsp, num):
     else:
         return "{0}".format(rsp.encode('utf-8'))
 
+
 def gen_idcard_ocr_url():
     return string.join([DataStreamUrlPrefix, OcrVersion, IdcardOcr], "/")
+
+
+def gen_bill_ocr_url():
+    return string.join([DataStreamUrlPrefix, OcrVersion, BillOcr], "/")
 
 
 def gen_signature(config_file, timestamp, url=''):

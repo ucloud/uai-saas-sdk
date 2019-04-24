@@ -1,5 +1,6 @@
 from api.create_sync_image_job import UAICensorCreateSyncImageJobApi
 
+from operation.utils import parse_unrequired_args
 from operation.base_datastream_operation import UAICensorBaseDatastreamOperation
 
 
@@ -22,7 +23,7 @@ class UAICensorCreateImageJobOp(UAICensorBaseDatastreamOperation):
         args_parser.add_argument(
             '--url',
             type=str,
-            required=True,
+            required=False,
             help='Url of censor image'
         )
         args_parser.add_argument(
@@ -41,8 +42,9 @@ class UAICensorCreateImageJobOp(UAICensorBaseDatastreamOperation):
 
     def _parse_image_job_args(self, args):
         self.scenes = args['scenes']
-        self.url = args['url']
         self.method = args['method']
+        self.url = parse_unrequired_args(args, 'url')
+        self.image = parse_unrequired_args(args, 'image')
 
     def _add_args(self):
         super(UAICensorCreateImageJobOp, self)._add_args()
@@ -61,5 +63,6 @@ class UAICensorCreateImageJobOp(UAICensorBaseDatastreamOperation):
                                                 timestamp=self.timestamp,
                                                 scenes=self.scenes,
                                                 url=self.url,
-                                                method=self.method)
+                                                method=self.method,
+                                                image=self.image)
         return caller.call_api()

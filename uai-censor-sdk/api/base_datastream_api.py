@@ -13,7 +13,7 @@ class UAICensorBaseDatastreamApi(object):
         self.cmd_header['Signature'] = signature
         self.cmd_header['PublicKey'] = public_key
         self.cmd_header['ResourceId'] = resource_id
-        self.cmd_header['Timestamp'] = timestamp
+        self.cmd_header['Timestamp'] = str(timestamp)
 
     def _check_args(self, header, params):
         if header['Signature'] == "":
@@ -22,7 +22,7 @@ class UAICensorBaseDatastreamApi(object):
             raise ValueError("PublicKey cannot be nil in header info")
         if header['ResourceId'] == "":
             raise ValueError("ResourceId cannot be nil in header info")
-        if header['Timestamp'] == 0:
+        if header['Timestamp'] == "":
             raise ValueError("Timestamp cannot be nil in header info")
         return True
 
@@ -46,8 +46,6 @@ class UAICensorBaseDatastreamApi(object):
             return True, rsp
 
     def _send_post_request_with_multi_part(self):
-        # m = MultipartEncoder(fields=self.cmd_params)
-        # self.cmd_header['Content-Type'] = m.content_type
         r = requests.post(self.cmd_url, files=self.cmd_params, headers=self.cmd_header)
         rsp = json.loads(r.text, encoding='utf-8')
         if rsp['RetCode'] != 0:
@@ -62,7 +60,7 @@ class UAICensorBaseDatastreamApi(object):
             return True, rsp
 
     def _send_get_request(self):
-        r = requests.get(self.cmd_url, data=json.dumps(self.cmd_params), headers=self.cmd_header)
+        r = requests.get(self.cmd_url, params=self.cmd_params, headers=self.cmd_header)
         rsp = json.loads(r.text, encoding='utf-8')
         if rsp['RetCode'] != 0:
             print("Call {0} fail: [{1}]{2}".format(self.cmd_url, rsp["RetCode"],

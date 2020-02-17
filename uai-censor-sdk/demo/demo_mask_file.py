@@ -27,10 +27,10 @@ image = None
 with open('test.jpg', 'rb') as fp:
     image = fp.read()
 conf = loadConfig('config.json')
-//---------------------------------------------------------------
-// How to get public_key, private_key and resource_id? 
-// refer to https://docs.ucloud.cn/ai/uai-censor/access/overview
-//---------------------------------------------------------------
+#---------------------------------------------------------------
+# How to get public_key, private_key and resource_id? 
+# refer to https://docs.ucloud.cn/ai/uai-censor/access/overview
+#---------------------------------------------------------------
 public_key = conf['public_key']    
 private_key = conf['private_key']
 resource_id = conf['resource_id']

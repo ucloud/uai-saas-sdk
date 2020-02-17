@@ -7,6 +7,7 @@ DataStreamUrlPrefix = "http://api.uai.ucloud.cn"
 CensorVersion = "v1"
 VideoAsyncScan = "video/asyncscan"
 ImageSyncScan = "image/scan"
+MaskScan = "mask"
 VideoSyncScan = "video/syncscan"
 VideoToFrame = "toframe"
 
@@ -42,6 +43,8 @@ def get_response(rsp, num):
 def gen_sync_image_censor_url():
     return string.join([DataStreamUrlPrefix, CensorVersion, ImageSyncScan], "/")
 
+def gen_mask_censor_url():
+    return string.join([DataStreamUrlPrefix, CensorVersion, MaskScan], "/")
 
 def gen_sync_video_censor_url():
     return string.join([DataStreamUrlPrefix, CensorVersion, VideoSyncScan], "/")
